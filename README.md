@@ -1,4 +1,3 @@
-
 # NodeJS Blog Application
 > Blog application written in NodeJS, Express and MongoDB.
 > Demo application at: https://
