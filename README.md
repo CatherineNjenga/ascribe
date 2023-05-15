@@ -1,16 +1,13 @@
-<div align="center">
-  <h1>Star Wars</h1>
-  <p>A NodeJS Blog Application</p>
-</div>
+<p align="center">
+  <img src="./">
+</p>
+# NodeJS Blog Application
+> Blog application written in NodeJS, Express and MongoDB.
+> Demo application at: https://
 
-## About
-Blog application written in Node.js/Express, MongoDB for database persistence and EJS for server side scripting.
+![Screenshot](./)
 
-Live demo at: https://catherinenjenga.github.io/ascribe/
-
-![Front side of the cards](assets/screenshot.png)
-
-**Learning goals involve:** 
+## Learning Goals
 - Increased proficiency in version control (git)
 - Increased proficiency in Node.js/Express
 - Increased proficiency in NoSQL databases (mongoose & MongoDB)
@@ -18,51 +15,100 @@ Live demo at: https://catherinenjenga.github.io/ascribe/
 - Backend and Frontend Cookie handling
 - End to end testing with Cypress
 
-**Stretch Learning goals involve:**
-- The use of SQL databases (PostgreSQL) with Node.js/Express
+## Future Features/ Stretch Learning Goals
+- The use of SQL databases (PostgreSQL) with Node.js/Express to build the comments section - https://www.taniarascia.com/add-comments-
 - Integrating with third-party APIs (Social Media, Geocoding)
 - Sending emails from my application
 - Testing with Jest
 - Proper Authentication using Auth0 - https://auth0.com/blog/complete-guide-to-nodejs-express-user-authentication/ 
 - Or use of passportjs - https://www.passportjs.org/ 
-___
-## Core features
-- Authentication
-- Add/Update/Delete Blogs
 
 ## Features
 
-### Asynchronous fetches
-* Pulls in data about star wars movies from [SWAPI](https://swapi.dev/)
+- **Authentication** - 
+- **Create/Read/Update/Delete Blog Posts** - 
+- **EJS** - view rendered HTML
+<!-- - **Syntax highlighting** - light and dark mode available (based on the beautiful [New Moon theme](https://taniarascia.github.io/new-moon/))
+- **Keyboard shortcuts** - use the keyboard for all common tasks - creating notes and categories, toggling settings, and other options
+- **Drag and drop** - drag a note or multiple notes to categories, favorites, or trash
+- **Multi-cursor editing** - supports multiple cursors and other [Codemirror](https://codemirror.net/) options
+- **Search notes** - easily search all notes, or notes within a category
+- **Prettify notes** - use Prettier on the fly for your Markdown
+- **No WYSIWYG** - made for developers, by developers
+- **No database** - notes are only stored in the browser's local storage and are available for download and export to you alone
+- **No tracking or analytics** - 'nuff said
+- **GitHub integration** - self-hosted option is available for auto-syncing to a GitHub repository (not available in the demo) -->
+
+## About
+
+Blog application written in Node.js/Express, MongoDB for database persistence and EJS for server side scripting.
 
 ## Getting Started
 
-Follow the installing instructions below to run the project on your local machine
+### 1. Installation
 
-### Dependencies
+This project is built with Node.js, Express, MongoDB for database and tested with Cypress. To start working on the project, first clone the repository on your local machine and install the dependencies.
 
-The blog is built with Node.js
-
-### Installing
-
-1. Download ZIP or clone this repo
+```bash
+git clone git@github.com:
+cd ascribe
+npm i
 ```
-> git clone https://github.com/CatherineNjenga/StarWars.git
+
+### 2. Create .env File
+
+**copy the `.env.template` file to a new file called `.env`.** This file contains the required environment variables that are injected by Node.js via the `dotenv` package.
+
+### 3. Run Development Server
+
+Finally, run the development server:
+
+```bash
+npm run dev
 ```
-2. Navigate to the folder "docs" and open index.html
 
-## Built With
+Now you can open [http://localhost:3000](http://localhost:3000) with your browser to see the application.
 
-### Frontend
 
-* HTML/CSS
-* ejs
+## Testing
 
-### Backend
+Run unit and component/integration tests.
 
-* Node.js
-* Express
-* MongoDB
-* mongoose
-___
-## Inspirations
+```bash
+npm run test
+```
+
+> If using Jest Runner in VSCode, add `"jestrunner.configPath": "config/jest.config.js"` to your settings
+
+Run Cypress end-to-end tests.
+
+```bash
+# In one window, run the application
+npm run client
+
+# In another window, run the end-to-end tests
+npm run test:e2e:open
+```
+
+<!-- ## Contributing
+
+TakeNote is an open source project, and contributions of any kind are welcome and appreciated. Open issues, bugs, and feature requests are all listed on the [issues](https://github.com/taniarascia/takenote/issues) tab and labeled accordingly. Feel free to open bug tickets and make feature requests. Easy bugs and features will be tagged with the `good first issue` label.
+
+View [CONTRIBUTING.md](CONTRIBUTING.md) to learn about the style guide, folder structure, scripts, and how to contribute. -->
+
+<!-- ## Contributors
+
+Thanks goes to these wonderful people: -->
+
+
+## Acknowledgements
+
+- A big thank you to.
+
+## Author
+
+- [Catherine Njenga](https://www.taniarascia.com)
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
