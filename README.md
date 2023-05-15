@@ -16,7 +16,7 @@
 - The use of SQL databases (PostgreSQL) with Node.js/Express to build the comments section - https://www.taniarascia.com/add-comments-
 - Integrating with third-party APIs (Social Media, Geocoding)
 - Sending emails from my application
-- Testing with Jest
+- Testing with Jest/Mocha/Chai
 - Proper Authentication using Auth0 - https://auth0.com/blog/complete-guide-to-nodejs-express-user-authentication/ 
 - Or use of passportjs - https://www.passportjs.org/ 
 
