@@ -1,6 +1,7 @@
-<p align="center">
+<!-- <p align="center">
   <img src="./">
-</p>
+</p> -->
+
 # NodeJS Blog Application
 > Blog application written in NodeJS, Express and MongoDB.
 > Demo application at: https://
