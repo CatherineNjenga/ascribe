@@ -13,7 +13,7 @@ const home = async (req, res) => {
 
   // sort
   if (sort) {
-    const sortList = result.split(',').join(' ');
+    const sortList = sort.split(',').join(' ');
     result = result.sort(sortList);
   } else {
     // to-do how to sort -1 from this point
@@ -23,12 +23,12 @@ const home = async (req, res) => {
   const page = Number(req.query.page) || 1;
   const limit = Number(req.query.limit) || 10;
   const skip = (page - 1) * limit;
-
   result = result.skip(skip).limit(limit);
+
   const data = await result;
   // to-do research on mongoose count method on the schema
   // should we use a callback function/not necessarily
-  // Query.protype.count() deprecated -> countDocuments()
+  // Query.prototype.count() deprecated -> countDocuments()
   const count = await Post.countDocuments({});
   const nextPage = page + 1;
   const hasNextPage = nextPage <= Math.ceil(count / limit);
@@ -42,19 +42,56 @@ const home = async (req, res) => {
 
 };
 
+const post = async (req, res) => {
+  const { id: postId } = req.params;
+  const data =  await Post.findById({ _id: postId });
+  const locals = {
+    title: data.title,
+    description: "A blog built with NodeJS, Express and MongoDB",
+  };
+  res.render('post', { locals, data });
+};
+
+const search = async (req, res) => {
+  const locals = {
+    title: "search results",
+    description: "A blog built with NodeJS, Express and MongoDB",
+  };
+
+  const searchTerm = req.body.searchTerm;
+  const searchNoSpecialChar = searchTerm.replace(/[^a-zA-Z0-9 ]/g, "");
+  const data = await Post.find({
+    $or: [
+      { title: { $regex: searchNoSpecialChar, $options: 'i' }},
+      { body: { $regex: searchNoSpecialChar, $options: 'i' }},
+    ]
+  })
+  res.render('search', {
+    locals,
+    data,
+  });
+};
+
+const about = (req, res) => {
+  res.render('about');
+};
+
 function getPostData() {
   Post.insertMany([
     {
       title: "Blog One",
       body: "Blog post one",
+      // categories: ['career', 'personal'],
     },
     {
       title: "Blog Two",
       body: "Blog post two",
+      // categories: ['career', 'personal'],
     },
     {
       title: "Blog Three",
       body: "Blog post three",
+      // categories: ['career', 'personal'],
     },
     {
       title: "Blog Four",
@@ -93,10 +130,4 @@ function getPostData() {
 
 // getPostData();
 
-
-
-const about = (req, res) => {
-  res.render('about');
-};
-
-module.exports = { home, about };
+module.exports = { home, about, post, search };

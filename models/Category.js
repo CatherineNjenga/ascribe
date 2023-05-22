@@ -2,9 +2,9 @@
 const mongoose = require('mongoose');
 const CategorySchema = new mongoose.Schema({
   title: {
-    type: String,
-    required: [true, 'Please provide blog category'],
-    enum: ['books', 'career', 'personal'],
+    // type: String,
+    // required: [true, 'Please provide blog category'],
+    // enum: ['books', 'career', 'personal'],
   }
 });
 
