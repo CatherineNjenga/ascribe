@@ -12,6 +12,8 @@ const mainRouter = require('./routes/main');
 const { connect } = require('mongoose');
 
 app.use(express.static('public'));
+
+// decode request params url, request body's json
 app.use(express.urlencoded( { extended: false }));
 app.use(express.json());
 
@@ -35,7 +37,3 @@ const start = async () => {
 };
 
 start();
-
-    
-
-
