@@ -12,6 +12,8 @@ const mainRouter = require('./routes/main');
 const { connect } = require('mongoose');
 
 app.use(express.static('public'));
+app.use(express.urlencoded( { extended: false }));
+app.use(express.json());
 
 // Templating Engine
 app.use(expressLayout);
