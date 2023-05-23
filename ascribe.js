@@ -9,6 +9,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 const mainRouter = require('./routes/main');
+const adminRouter = require('./routes/admin');
 const { connect } = require('mongoose');
 
 app.use(express.static('public'));
@@ -24,6 +25,7 @@ app.set('view engine', 'ejs');
 
 // routes
 app.use('/', mainRouter);
+app.use('/', adminRouter);
 
 const start = async () => {
   try {

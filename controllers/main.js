@@ -1,6 +1,11 @@
 'use strict';
 const Post = require('../models/Post');
 
+/**
+ * GET /
+ * HOME
+ */
+
 const home = async (req, res) => {
   // to-do how to handle async/await in express without the try/catch block
   const locals = {
@@ -42,6 +47,11 @@ const home = async (req, res) => {
 
 };
 
+/**
+ * GET /
+ * Post
+ */
+
 const post = async (req, res) => {
   const { id: postId } = req.params;
   const data =  await Post.findById({ _id: postId });
@@ -52,6 +62,11 @@ const post = async (req, res) => {
   res.render('post', { locals, data });
 };
 
+/**
+ * GET
+ * Search
+ */
+
 const search = async (req, res) => {
   const locals = {
     title: "search results",
@@ -59,13 +74,14 @@ const search = async (req, res) => {
   };
 
   const searchTerm = req.body.searchTerm;
-  const searchNoSpecialChar = searchTerm.replace(/[^a-zA-Z0-9 ]/g, "");
+  const searchNoSpecialChar = searchTerm.replace(/[^0-9A-Za-z]/g, "");
   const data = await Post.find({
     $or: [
       { title: { $regex: searchNoSpecialChar, $options: 'i' }},
       { body: { $regex: searchNoSpecialChar, $options: 'i' }},
     ]
-  })
+  });
+  
   res.render('search', {
     locals,
     data,
