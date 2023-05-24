@@ -8,9 +8,29 @@ const connectDB = require('./db/connect');
 const app = express();
 const port = process.env.PORT || 3000;
 
+
 const mainRouter = require('./routes/main');
 const adminRouter = require('./routes/admin');
-const { connect } = require('mongoose');
+const postRouter = require('./routes/post');
+const authUser = require('./middleware/authentication');
+
+// cookies
+const cookieParser = require('cookie-parser');
+
+// sessions
+const expressSession = require('express-session');
+const MongoStore = require('connect-mongo');
+
+app.use(cookieParser(process.env.COOKIE_SECRET));
+app.use(expressSession({
+  cookie: { signed: true, maxAge: 3600000 },
+  resave: false,
+  saveUninitialized: false,
+  secret: process.env.COOKIE_SECRET,
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGO_URI,
+  })
+}));
 
 app.use(express.static('public'));
 
@@ -26,6 +46,7 @@ app.set('view engine', 'ejs');
 // routes
 app.use('/', mainRouter);
 app.use('/', adminRouter);
+app.use('/', authUser, postRouter);
 
 const start = async () => {
   try {

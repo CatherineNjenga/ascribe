@@ -56,23 +56,26 @@ const login = async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return res.status(StatusCodes.UNAUTHORIZED).send('Unauthorized Credentials');
+    return res.status(StatusCodes.UNAUTHORIZED).send('Invalid Credentials');
   }
 
   const user = await User.findOne({ email });
 
   if (!user) {
-    return res.status(StatusCodes.UNAUTHORIZED).send('Unauthorized Credentials');
+    return res.status(StatusCodes.UNAUTHORIZED).send('Invalid Credentials');
   }
 
   const isPasswordMatch = await user.comparePasswords(password);
 
   if (!isPasswordMatch) {
-    return res.status(StatusCodes.UNAUTHORIZED).send('Unauthorized Credentials');
+    return res.status(StatusCodes.UNAUTHORIZED).send('Invalid Credentials');
   }
 
   const token = user.createJWT();
-  res.status(StatusCodes.OK).json({ user: {name: user.username}, token });
+  // set cookie
+  res.cookie('token', token, { httpOnly: true });
+  // res.status(StatusCodes.OK).json({ user: {name: user.username}, token });
+  res.redirect('/dashboard');
 };
 
 module.exports = {
