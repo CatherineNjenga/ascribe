@@ -8,6 +8,7 @@ const Post = require('../models/Post');
 
 const home = async (req, res) => {
   // to-do how to handle async/await in express without the try/catch block
+  // to-do, possible to not repeat this variable in every route?
   const locals = {
     title: "ascribe",
     description: "A blog built with NodeJS, Express and MongoDB",
@@ -42,7 +43,8 @@ const home = async (req, res) => {
     locals, 
     data,
     current: page,
-    nextPage: hasNextPage ? nextPage : null
+    nextPage: hasNextPage ? nextPage : null,
+    currentRoute: '/',
    });
 
 };
@@ -59,7 +61,7 @@ const post = async (req, res) => {
     title: data.title,
     description: "A blog built with NodeJS, Express and MongoDB",
   };
-  res.render('post', { locals, data });
+  res.render('post', { locals, data, currentRoute: `/post/${postId}` });
 };
 
 /**
@@ -85,11 +87,12 @@ const search = async (req, res) => {
   res.render('search', {
     locals,
     data,
+    currentRoute: '/',
   });
 };
 
 const about = (req, res) => {
-  res.render('about');
+  res.render('about', {currentRoute: '/about'} );
 };
 
 function getPostData() {

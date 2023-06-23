@@ -1,18 +1,29 @@
 <div class="author">
-  <h1 class="author__heading">Search Results</h1>
+  <h3 class="author__heading">Search Results</h3>
 </div>
-<h1>Done</h1>
+<h3>Done</h3>
 <section class="articles">
-  <ul class="article-ul">
-    <% data.forEach(post => { %>
-    <li>
-      <a href="/post/<%= post._id %>">
-        <span><%= post.title %></span>
-        <span class="article-list__date"><%= post.createdAt.toDateString() %></span>
-        <!-- <span><%= post.categories %></span> -->
-      </a>
-    </li>
-    <% }) %>
-  </ul>
+  <% if (data.length > 1) { %>
+    <ul class="article-ul">
+      <% data.forEach(post => { %>
+      <li>
+        <a href="/post/<%= post._id %>">
+          <span><%= post.title %></span>
+          <span class="article-list__date"><%= post.createdAt.toDateString() %></span>
+        </a>
+      </li>
+      <% }) %>
+    </ul>
+  <% } else { %>
+    <h3>No Results For Your Search</h3>
+  <% } %>
+   
+    
+ 
+  
+   
+  
+   
+  
 </section>
 
