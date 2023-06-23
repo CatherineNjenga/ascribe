@@ -3,7 +3,9 @@ require('dotenv').config();
 
 const express = require('express');
 const expressLayout = require('express-ejs-layouts');
+const methodOverride = require('method-override');
 const connectDB = require('./db/connect');
+const { isActiveRoute } = require('./helpers/routeHelpers');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -37,11 +39,14 @@ app.use(express.static('public'));
 // decode request params url, request body's json
 app.use(express.urlencoded( { extended: false }));
 app.use(express.json());
+app.use(methodOverride('_method'));
 
 // Templating Engine
 app.use(expressLayout);
 app.set('layout', './layouts/main');
 app.set('view engine', 'ejs');
+
+app.locals.isActiveRoute = isActiveRoute;
 
 // routes
 app.use('/', mainRouter);

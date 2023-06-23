@@ -241,7 +241,7 @@ img {
 }
 
 .article-ul:hover li {
-  filter: blur(3px);
+  filter: blur(1px);
 }
 
 .article-ul:hover li:hover {
@@ -279,6 +279,7 @@ img {
   position: absolute;
   left: 0;
   right: 0;
+  margin-top: 12px;
 }
 
 .searchBar.open {
