@@ -95,6 +95,10 @@ const about = (req, res) => {
   res.render('about', {currentRoute: '/about'} );
 };
 
+const contact = (req, res) => {
+  res.render('contact', {currentRoute: '/contact'} );
+};
+
 function getPostData() {
   Post.insertMany([
     {
@@ -149,4 +153,4 @@ function getPostData() {
 
 // getPostData();
 
-module.exports = { home, about, post, search };
+module.exports = { home, about, post, search, contact };
