@@ -3,11 +3,11 @@ const Post = require('../models/Post');
 
 /**
  * GET /
- * HOME
+ * Home
  */
 
 const home = async (req, res) => {
-  // to-do how to handle async/await in express without the try/catch block
+  // to-do how to handle async/await in express without repeating the try/catch block
   // to-do, possible to not repeat this variable in every route?
   const locals = {
     title: "ascribe",
@@ -61,7 +61,10 @@ const post = async (req, res) => {
     title: data.title,
     description: "A blog built with NodeJS, Express and MongoDB",
   };
-  res.render('post', { locals, data, currentRoute: `/post/${postId}` });
+  res.render('post', { 
+    locals, 
+    data, 
+    currentRoute: `/post/${postId}` });
 };
 
 /**
@@ -91,12 +94,24 @@ const search = async (req, res) => {
   });
 };
 
+/**
+ * GET
+ * About
+ */
+
 const about = (req, res) => {
-  res.render('about', {currentRoute: '/about'} );
+  res.render('about', {
+    currentRoute: '/about'} );
 };
 
+/**
+ * GET
+ * Contact
+ */
+
 const contact = (req, res) => {
-  res.render('contact', {currentRoute: '/contact'} );
+  res.render('contact', {
+    currentRoute: '/contact'} );
 };
 
 function getPostData() {
@@ -153,4 +168,4 @@ function getPostData() {
 
 // getPostData();
 
-module.exports = { home, about, post, search, contact };
+module.exports = { home, about, contact, search, post };
