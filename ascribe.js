@@ -16,6 +16,10 @@ const adminRouter = require('./routes/admin');
 const postRouter = require('./routes/post');
 const authUser = require('./middleware/authentication');
 
+// error handler
+const notFoundMiddleware = require('./middleware/not-found');
+const errorHandlerMiddleware = require('./middleware/error-handler');
+
 // cookies
 const cookieParser = require('cookie-parser');
 
@@ -52,6 +56,9 @@ app.locals.isActiveRoute = isActiveRoute;
 app.use('/', mainRouter);
 app.use('/', adminRouter);
 app.use('/', authUser, postRouter);
+
+app.use(notFoundMiddleware);
+app.use(errorHandlerMiddleware);
 
 const start = async () => {
   try {
